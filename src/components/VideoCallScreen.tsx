@@ -47,38 +47,18 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
   // 로컬 스트림이 변경될 때마다 비디오 엘리먼트에 설정
   useEffect(() => {
     if (localStream && localVideoRef.current) {
-      console.log('🔗 Setting video stream to element');
       localVideoRef.current.srcObject = localStream;
-      
-      // 비디오 재생 확인
-      localVideoRef.current.onloadedmetadata = () => {
-        console.log('📺 Video metadata loaded');
-        localVideoRef.current?.play().then(() => {
-          console.log('▶️ Video playing successfully');
-        }).catch(error => {
-          console.error('❌ Video play error:', error);
-        });
-      };
-      
-      localVideoRef.current.onerror = (error) => {
-        console.error('❌ Video element error:', error);
-      };
+      localVideoRef.current.play().catch(console.error);
     }
   }, [localStream]);
 
   const initializeMediaAndConnect = async () => {
     try {
-      console.log('🎥 Requesting camera and microphone access...');
-      
       // 미디어 권한 요청
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { width: 1280, height: 720 },
         audio: true
       });
-      
-      console.log('✅ Media stream obtained:', stream);
-      console.log('📹 Video tracks:', stream.getVideoTracks());
-      console.log('🎤 Audio tracks:', stream.getAudioTracks());
       
       setLocalStream(stream);
       setPermissionGranted(true);
@@ -87,18 +67,16 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
       await connectToService();
       
     } catch (error) {
-      console.error('❌ Media access error:', error);
+      console.error('Media access error:', error);
       onError('Camera/microphone access denied. Please allow permissions and try again.');
     }
   };
 
   const connectToService = async () => {
     try {
-      console.log('🔌 Connecting to service...');
       const result: ConnectionTestResult = await service.connect(config);
       
       if (result.success) {
-        console.log('✅ Service connected successfully');
         setIsConnected(true);
         
         // 초기 참가자 설정 (나만)
@@ -110,46 +88,21 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
           isVideoOff: false
         };
         
-        console.log('👤 Setting local participant:', localParticipant);
         setParticipants([localParticipant]);
         
         // 연결 시간 카운터 시작
         intervalRef.current = setInterval(() => {
           setConnectionTime(prev => prev + 1);
         }, 1000);
-
-        // 시뮬레이션: 2-5초 후 랜덤하게 참가자 추가
-        setTimeout(() => {
-          addRandomParticipants();
-        }, Math.random() * 3000 + 2000);
         
       } else {
-        console.error('❌ Service connection failed:', result.message);
         onError(result.message);
       }
     } catch (error) {
-      console.error('❌ Connection error:', error);
       onError(error instanceof Error ? error.message : 'Connection failed');
     }
   };
 
-  const addRandomParticipants = () => {
-    const participantNames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank'];
-    const numToAdd = Math.floor(Math.random() * 3) + 1; // 1-3명 추가
-    
-    const newParticipants: Participant[] = [];
-    for (let i = 0; i < numToAdd; i++) {
-      const name = participantNames[Math.floor(Math.random() * participantNames.length)];
-      newParticipants.push({
-        id: `remote-${Date.now()}-${i}`,
-        name,
-        isMuted: Math.random() > 0.7, // 30% 확률로 뮤트
-        isVideoOff: Math.random() > 0.8 // 20% 확률로 비디오 오프
-      });
-    }
-    
-    setParticipants(prev => [...prev, ...newParticipants]);
-  };
 
   const cleanup = () => {
     if (intervalRef.current) {
@@ -220,42 +173,16 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
   const renderParticipant = (participant: Participant, index: number) => {
     const isLocal = participant.id === 'local';
     
-    console.log(`🎬 Rendering participant: ${participant.name}, isLocal: ${isLocal}, hasStream: ${!!localStream}`);
-    
     return (
       <div key={participant.id} className={`participant-video ${isLocal ? 'local' : 'remote'}`}>
         {isLocal && localStream ? (
-          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-            <video
-              ref={localVideoRef}
-              autoPlay
-              muted
-              playsInline
-              className="video-element"
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover',
-                background: '#000' 
-              }}
-              onLoadedData={() => console.log('📺 Video loaded and ready')}
-              onPlay={() => console.log('▶️ Video is playing')}
-              onError={(e) => console.error('❌ Video error:', e)}
-            />
-            {/* 디버그 정보 오버레이 */}
-            <div style={{
-              position: 'absolute',
-              top: '10px',
-              left: '10px',
-              background: 'rgba(0,0,0,0.7)',
-              color: 'white',
-              padding: '5px',
-              fontSize: '12px',
-              borderRadius: '3px'
-            }}>
-              Stream: {localStream ? '✅' : '❌'}
-            </div>
-          </div>
+          <video
+            ref={localVideoRef}
+            autoPlay
+            muted
+            playsInline
+            className="video-element"
+          />
         ) : (
           <div className="mock-video" style={{
             background: `linear-gradient(45deg, hsl(${index * 60}, 70%, 60%), hsl(${index * 60 + 40}, 70%, 70%))`
