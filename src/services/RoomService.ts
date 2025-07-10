@@ -99,21 +99,28 @@ export class RoomService {
   }
 
   public joinRoom(onParticipantsChange: (participants: RoomParticipant[]) => void): void {
+    console.log(`🚪 Joining room: ${this.roomId} as ${this.participantId}`);
+    console.log(`🔑 Storage key: ${this.getStorageKey()}`);
+    
     this.onParticipantsChange = onParticipantsChange;
     
     // 하트비트 시작 (내 존재 알리기)
     this.heartbeatInterval = setInterval(() => {
       this.updateLastSeen();
+      console.log(`💓 Heartbeat sent for ${this.participantId}`);
     }, RoomService.HEARTBEAT_INTERVAL);
 
     // 참여자 변경 감지
     this.participantCheckInterval = setInterval(() => {
       const activeParticipants = this.removeInactiveParticipants();
+      console.log(`👥 Active participants in room ${this.roomId}:`, activeParticipants.map(p => `${p.name} (${p.deviceInfo}) - ${p.id.slice(-6)}`));
+      console.log(`📊 Total participants: ${activeParticipants.length}`);
       this.onParticipantsChange?.(activeParticipants);
     }, RoomService.HEARTBEAT_INTERVAL);
 
     // 초기 참여자 목록 전달
     const initialParticipants = this.removeInactiveParticipants();
+    console.log(`🎬 Initial participants:`, initialParticipants.map(p => `${p.name} (${p.deviceInfo})`));
     this.onParticipantsChange(initialParticipants);
   }
 

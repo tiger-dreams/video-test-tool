@@ -51,8 +51,30 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
   // 로컬 스트림이 변경될 때마다 비디오 엘리먼트에 설정
   useEffect(() => {
     if (localStream && localVideoRef.current) {
+      console.log('🎬 Setting video stream to element:', localStream);
+      console.log('📺 Video element:', localVideoRef.current);
+      
       localVideoRef.current.srcObject = localStream;
-      localVideoRef.current.play().catch(console.error);
+      
+      // 비디오 메타데이터 로드 후 재생
+      localVideoRef.current.onloadedmetadata = () => {
+        console.log('📊 Video metadata loaded');
+        if (localVideoRef.current) {
+          localVideoRef.current.play()
+            .then(() => console.log('▶️ Video playing successfully'))
+            .catch(error => console.error('❌ Video play failed:', error));
+        }
+      };
+
+      // 에러 핸들링
+      localVideoRef.current.onerror = (error) => {
+        console.error('❌ Video element error:', error);
+      };
+
+      // 즉시 재생 시도
+      localVideoRef.current.play()
+        .then(() => console.log('▶️ Immediate video play successful'))
+        .catch(error => console.log('⏸️ Immediate play failed (normal):', error.message));
     }
   }, [localStream]);
 
@@ -164,7 +186,7 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
     if (localStream) {
       const audioTrack = localStream.getAudioTracks()[0];
       if (audioTrack) {
-        audioTrack.enabled = isMuted;
+        audioTrack.enabled = !isMuted;
       }
     }
     
@@ -183,7 +205,7 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
     if (localStream) {
       const videoTrack = localStream.getVideoTracks()[0];
       if (videoTrack) {
-        videoTrack.enabled = isVideoOff;
+        videoTrack.enabled = !isVideoOff;
       }
     }
     
@@ -212,18 +234,52 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
   };
 
   const renderParticipant = (participant: Participant, index: number) => {
-    const isLocal = participant.id === 'local';
+    const isLocal = participant.isLocal;
+    
+    console.log(`🎬 Rendering participant: ${participant.name}, isLocal: ${isLocal}, hasLocalStream: ${!!localStream}`);
     
     return (
       <div key={participant.id} className={`participant-video ${isLocal ? 'local' : 'remote'}`}>
-        {isLocal && localStream ? (
-          <video
-            ref={localVideoRef}
-            autoPlay
-            muted
-            playsInline
-            className="video-element"
-          />
+        {isLocal ? (
+          <div className="local-video-container">
+            {localStream ? (
+              <video
+                ref={localVideoRef}
+                autoPlay
+                muted
+                playsInline
+                className="video-element"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  backgroundColor: '#000'
+                }}
+                onCanPlay={() => console.log('📹 Video can play')}
+                onPlaying={() => console.log('▶️ Video is playing')}
+                onError={(e) => console.error('❌ Video error:', e)}
+              />
+            ) : (
+              <div className="no-video-placeholder">
+                <span>📷</span>
+                <p>Loading camera...</p>
+              </div>
+            )}
+            
+            {/* 디버그 정보 */}
+            <div style={{
+              position: 'absolute',
+              top: '10px',
+              right: '10px',
+              background: 'rgba(0,0,0,0.8)',
+              color: 'white',
+              padding: '4px 8px',
+              fontSize: '12px',
+              borderRadius: '4px'
+            }}>
+              {localStream ? '🟢 LIVE' : '🔴 NO CAM'}
+            </div>
+          </div>
         ) : (
           <div className="mock-video" style={{
             background: `linear-gradient(45deg, hsl(${index * 60}, 70%, 60%), hsl(${index * 60 + 40}, 70%, 70%))`
