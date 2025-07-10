@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { VideoServiceType, ServiceConfig, ConnectionTestResult } from '../types';
 import { VideoServiceFactory } from '../services';
+import { RoomService } from '../services/RoomService';
 
 interface Participant {
   id: string;
@@ -8,6 +9,8 @@ interface Participant {
   stream?: MediaStream;
   isMuted?: boolean;
   isVideoOff?: boolean;
+  isLocal?: boolean;
+  deviceInfo?: string;
 }
 
 interface VideoCallScreenProps {
@@ -33,6 +36,7 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
   
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const roomServiceRef = useRef<RoomService | null>(null);
 
   const service = VideoServiceFactory.getService(serviceType);
 
@@ -79,16 +83,30 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
       if (result.success) {
         setIsConnected(true);
         
-        // 초기 참가자 설정 (나만)
-        const localParticipant = {
-          id: 'local',
-          name: 'You',
-          stream: localStream || undefined,
-          isMuted: false,
-          isVideoOff: false
-        };
+        // 방 입장 - config에서 방 ID 추출 (channel, roomName 등)
+        const roomId = extractRoomId(config);
+        const participantName = getParticipantName();
         
-        setParticipants([localParticipant]);
+        // RoomService 초기화
+        roomServiceRef.current = new RoomService(roomId, participantName);
+        
+        // 방 참여자 실시간 업데이트
+        roomServiceRef.current.joinRoom((roomParticipants) => {
+          const mappedParticipants: Participant[] = roomParticipants.map(rp => {
+            const isMe = rp.id === roomServiceRef.current?.getMyParticipantId();
+            return {
+              id: rp.id,
+              name: isMe ? 'You' : `${rp.name} (${rp.deviceInfo})`,
+              stream: isMe ? localStream || undefined : undefined,
+              isMuted: isMe ? isMuted : false,
+              isVideoOff: isMe ? isVideoOff : false,
+              isLocal: isMe,
+              deviceInfo: rp.deviceInfo
+            };
+          });
+          
+          setParticipants(mappedParticipants);
+        });
         
         // 연결 시간 카운터 시작
         intervalRef.current = setInterval(() => {
@@ -103,6 +121,22 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
     }
   };
 
+  // config에서 방 ID 추출
+  const extractRoomId = (config: ServiceConfig): string => {
+    // Agora의 경우 channel, LiveKit의 경우 roomName 등
+    if ('channel' in config && config.channel) return String(config.channel);
+    if ('roomName' in config && config.roomName) return String(config.roomName);
+    if ('meetingNumber' in config && config.meetingNumber) return String(config.meetingNumber);
+    if ('roomId' in config && config.roomId) return String(config.roomId);
+    return 'default-room';
+  };
+
+  // 참여자 이름 생성
+  const getParticipantName = (): string => {
+    const names = ['Alex', 'Sam', 'Jordan', 'Casey', 'Taylor', 'Morgan'];
+    return names[Math.floor(Math.random() * names.length)];
+  };
+
 
   const cleanup = () => {
     if (intervalRef.current) {
@@ -111,6 +145,11 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
     
     if (localStream) {
       localStream.getTracks().forEach(track => track.stop());
+    }
+    
+    // 방에서 나가기
+    if (roomServiceRef.current) {
+      roomServiceRef.current.leaveRoom();
     }
     
     service.disconnect().catch(console.error);
@@ -129,12 +168,13 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
       }
     }
     
-    setIsMuted(!isMuted);
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
     
     // 로컬 참가자 상태 업데이트
     setParticipants(prev => 
       prev.map(p => 
-        p.id === 'local' ? { ...p, isMuted: !isMuted } : p
+        p.isLocal ? { ...p, isMuted: newMutedState } : p
       )
     );
   };
@@ -147,12 +187,13 @@ export const VideoCallScreen: React.FC<VideoCallScreenProps> = ({
       }
     }
     
-    setIsVideoOff(!isVideoOff);
+    const newVideoOffState = !isVideoOff;
+    setIsVideoOff(newVideoOffState);
     
     // 로컬 참가자 상태 업데이트
     setParticipants(prev => 
       prev.map(p => 
-        p.id === 'local' ? { ...p, isVideoOff: !isVideoOff } : p
+        p.isLocal ? { ...p, isVideoOff: newVideoOffState } : p
       )
     );
   };
