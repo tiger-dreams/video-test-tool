@@ -69,3 +69,41 @@ Notes:
 
 ## License
 This repository is for testing/demo purposes. Add your preferred license here.
+
+---
+
+## Quick Start
+1. Open `TotalCallTest.xcodeproj` in Xcode 15+.
+2. Select an iOS Simulator or a physical device.
+3. Build & run.
+4. In the app:
+   - Enter your LiveKit `wss://` Server URL (e.g., `wss://<your-domain>.livekit.cloud`).
+   - Enter API Key and API Secret (from the same deployment as the URL).
+   - Set Room and Participant names.
+   - Tap “LiveKit 토큰 생성”, then “비디오 통화 시작”.
+
+## Configuration Details
+- **Server URL**: Must be WebSocket (`ws://` or `wss://`). Most deployments use `wss://`.
+- **Token**: The app can generate a short-lived JWT locally for testing. For production, generate tokens on a server you control.
+- **Permissions**: Ensure the app has camera and microphone usage descriptions in Info (NSCameraUsageDescription, NSMicrophoneUsageDescription). If missing, Xcode will warn at runtime.
+
+## Example Values
+- Server URL: `wss://your-workspace.livekit.cloud`
+- Room Name: `test-room`
+- Participant Name: `user-1234`
+
+## Screenshots (Optional)
+Add screenshots or screen recordings here to show the tile grid and controls.
+
+## Known Limitations
+- iOS Simulator has limited camera/mic support. Use a real device for full end-to-end tests.
+- Keyboard accessory constraint warnings can appear when editing text fields; they are harmless.
+
+## Roadmap / Ideas
+- Active speaker highlighting and dynamic tile ordering
+- Pagination or scrolling for >4 participants
+- Screen share tile and layout handling
+- Server-side token generation sample and a minimal backend
+
+## Contributing
+PRs and issues are welcome. If you plan significant changes, please open an issue first to discuss scope.
