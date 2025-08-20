@@ -34,15 +34,8 @@ struct ContentView: View {
                         Text("서버 설정")
                             .font(.headline)
                         
-                        TextField("Server URL", text: $serverURL)
+                        TextField("Server URL (wss://your-livekit-server.com)", text: $serverURL)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.URL)
-                            .textInputAutocapitalization(.never)
-                            .autocorrectionDisabled(true)
-                            .placeholder(when: serverURL.isEmpty) {
-                                Text("wss://your-livekit-server.com")
-                                    .foregroundColor(.gray)
-                            }
                     }
                     .padding()
                     .background(Color.gray.opacity(0.1))
@@ -203,9 +196,8 @@ struct ContentView: View {
                     #endif
                 }
                 .padding()
-                .scrollDismissesKeyboard(.interactively)
             }
-            .fullScreenCover(isPresented: $showingVideoCall) {
+            .sheet(isPresented: $showingVideoCall) {
                 LiveKitCallView(
                     liveKitManager: liveKitManager,
                     roomURL: serverURL.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -213,6 +205,7 @@ struct ContentView: View {
                     isPresented: $showingVideoCall,
                     showVideoStats: showVideoStats
                 )
+                .frame(minWidth: 800, minHeight: 600)
             }
         }
     }
@@ -260,10 +253,8 @@ struct ContentView: View {
     }
     
     private func copyToClipboard(_ text: String) {
-        UIPasteboard.general.string = text
-        // Simple haptic feedback
-        let impactFeedback = UIImpactFeedbackGenerator(style: .light)
-        impactFeedback.impactOccurred()
+        NSPasteboard.general.setString(text, forType: .string)
+        // macOS doesn't have haptic feedback like iOS
     }
 }
 

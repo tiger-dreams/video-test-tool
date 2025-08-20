@@ -8,9 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		6926DB352E549F3D007C19CC /* LiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6926DB1C2E549F00007C19CC /* LiveKit */; };
+		6977B39D2E558B3E00E76CBF /* LiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6977B39C2E558B3E00E76CBF /* LiveKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		690FFA852E556A7D00BBE904 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6926DAEA2E549E85007C19CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 690FFA762E556A7B00BBE904;
+			remoteInfo = TotalCallTestMac;
+		};
+		690FFA8F2E556A7D00BBE904 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6926DAEA2E549E85007C19CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 690FFA762E556A7B00BBE904;
+			remoteInfo = TotalCallTestMac;
+		};
 		6926DB002E549E87007C19CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6926DAEA2E549E85007C19CC /* Project object */;
@@ -28,14 +43,47 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		690FFA772E556A7B00BBE904 /* TotalCallTestMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TotalCallTestMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		690FFA842E556A7D00BBE904 /* TotalCallTestMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TotalCallTestMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		690FFA8E2E556A7D00BBE904 /* TotalCallTestMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TotalCallTestMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6926DAF22E549E85007C19CC /* TotalCallTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TotalCallTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6926DAFF2E549E87007C19CC /* TotalCallTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TotalCallTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6926DB092E549E87007C19CC /* TotalCallTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TotalCallTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		690FFAA02E556CC900BBE904 /* Exceptions for "TotalCallTest" folder in "TotalCallTestMac" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				LiveKitCallView.swift,
+				LiveKitManager.swift,
+				LiveKitTokenGenerator.swift,
+			);
+			target = 690FFA762E556A7B00BBE904 /* TotalCallTestMac */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		690FFA782E556A7B00BBE904 /* TotalCallTestMac */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TotalCallTestMac;
+			sourceTree = "<group>";
+		};
+		690FFA872E556A7D00BBE904 /* TotalCallTestMacTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TotalCallTestMacTests;
+			sourceTree = "<group>";
+		};
+		690FFA912E556A7D00BBE904 /* TotalCallTestMacUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TotalCallTestMacUITests;
+			sourceTree = "<group>";
+		};
 		6926DAF42E549E85007C19CC /* TotalCallTest */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				690FFAA02E556CC900BBE904 /* Exceptions for "TotalCallTest" folder in "TotalCallTestMac" target */,
+			);
 			path = TotalCallTest;
 			sourceTree = "<group>";
 		};
@@ -52,6 +100,28 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		690FFA742E556A7B00BBE904 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6977B39D2E558B3E00E76CBF /* LiveKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		690FFA812E556A7D00BBE904 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		690FFA8B2E556A7D00BBE904 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6926DAEF2E549E85007C19CC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -83,6 +153,10 @@
 				6926DAF42E549E85007C19CC /* TotalCallTest */,
 				6926DB022E549E87007C19CC /* TotalCallTestTests */,
 				6926DB0C2E549E87007C19CC /* TotalCallTestUITests */,
+				690FFA782E556A7B00BBE904 /* TotalCallTestMac */,
+				690FFA872E556A7D00BBE904 /* TotalCallTestMacTests */,
+				690FFA912E556A7D00BBE904 /* TotalCallTestMacUITests */,
+				6977B39B2E558B3E00E76CBF /* Frameworks */,
 				6926DAF32E549E85007C19CC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,13 +167,92 @@
 				6926DAF22E549E85007C19CC /* TotalCallTest.app */,
 				6926DAFF2E549E87007C19CC /* TotalCallTestTests.xctest */,
 				6926DB092E549E87007C19CC /* TotalCallTestUITests.xctest */,
+				690FFA772E556A7B00BBE904 /* TotalCallTestMac.app */,
+				690FFA842E556A7D00BBE904 /* TotalCallTestMacTests.xctest */,
+				690FFA8E2E556A7D00BBE904 /* TotalCallTestMacUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6977B39B2E558B3E00E76CBF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		690FFA762E556A7B00BBE904 /* TotalCallTestMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 690FFA962E556A7D00BBE904 /* Build configuration list for PBXNativeTarget "TotalCallTestMac" */;
+			buildPhases = (
+				690FFA732E556A7B00BBE904 /* Sources */,
+				690FFA742E556A7B00BBE904 /* Frameworks */,
+				690FFA752E556A7B00BBE904 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				690FFA782E556A7B00BBE904 /* TotalCallTestMac */,
+			);
+			name = TotalCallTestMac;
+			packageProductDependencies = (
+				6977B39C2E558B3E00E76CBF /* LiveKit */,
+			);
+			productName = TotalCallTestMac;
+			productReference = 690FFA772E556A7B00BBE904 /* TotalCallTestMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		690FFA832E556A7D00BBE904 /* TotalCallTestMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 690FFA992E556A7D00BBE904 /* Build configuration list for PBXNativeTarget "TotalCallTestMacTests" */;
+			buildPhases = (
+				690FFA802E556A7D00BBE904 /* Sources */,
+				690FFA812E556A7D00BBE904 /* Frameworks */,
+				690FFA822E556A7D00BBE904 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				690FFA862E556A7D00BBE904 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				690FFA872E556A7D00BBE904 /* TotalCallTestMacTests */,
+			);
+			name = TotalCallTestMacTests;
+			packageProductDependencies = (
+			);
+			productName = TotalCallTestMacTests;
+			productReference = 690FFA842E556A7D00BBE904 /* TotalCallTestMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		690FFA8D2E556A7D00BBE904 /* TotalCallTestMacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 690FFA9C2E556A7D00BBE904 /* Build configuration list for PBXNativeTarget "TotalCallTestMacUITests" */;
+			buildPhases = (
+				690FFA8A2E556A7D00BBE904 /* Sources */,
+				690FFA8B2E556A7D00BBE904 /* Frameworks */,
+				690FFA8C2E556A7D00BBE904 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				690FFA902E556A7D00BBE904 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				690FFA912E556A7D00BBE904 /* TotalCallTestMacUITests */,
+			);
+			name = TotalCallTestMacUITests;
+			packageProductDependencies = (
+			);
+			productName = TotalCallTestMacUITests;
+			productReference = 690FFA8E2E556A7D00BBE904 /* TotalCallTestMacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		6926DAF12E549E85007C19CC /* TotalCallTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6926DB132E549E87007C19CC /* Build configuration list for PBXNativeTarget "TotalCallTest" */;
@@ -179,6 +332,17 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					690FFA762E556A7B00BBE904 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					690FFA832E556A7D00BBE904 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 690FFA762E556A7B00BBE904;
+					};
+					690FFA8D2E556A7D00BBE904 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 690FFA762E556A7B00BBE904;
+					};
 					6926DAF12E549E85007C19CC = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -212,11 +376,35 @@
 				6926DAF12E549E85007C19CC /* TotalCallTest */,
 				6926DAFE2E549E87007C19CC /* TotalCallTestTests */,
 				6926DB082E549E87007C19CC /* TotalCallTestUITests */,
+				690FFA762E556A7B00BBE904 /* TotalCallTestMac */,
+				690FFA832E556A7D00BBE904 /* TotalCallTestMacTests */,
+				690FFA8D2E556A7D00BBE904 /* TotalCallTestMacUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		690FFA752E556A7B00BBE904 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		690FFA822E556A7D00BBE904 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		690FFA8C2E556A7D00BBE904 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6926DAF02E549E85007C19CC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +429,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		690FFA732E556A7B00BBE904 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		690FFA802E556A7D00BBE904 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		690FFA8A2E556A7D00BBE904 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6926DAEE2E549E85007C19CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -265,6 +474,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		690FFA862E556A7D00BBE904 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 690FFA762E556A7B00BBE904 /* TotalCallTestMac */;
+			targetProxy = 690FFA852E556A7D00BBE904 /* PBXContainerItemProxy */;
+		};
+		690FFA902E556A7D00BBE904 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 690FFA762E556A7B00BBE904 /* TotalCallTestMac */;
+			targetProxy = 690FFA8F2E556A7D00BBE904 /* PBXContainerItemProxy */;
+		};
 		6926DB012E549E87007C19CC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6926DAF12E549E85007C19CC /* TotalCallTest */;
@@ -278,6 +497,140 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		690FFA972E556A7D00BBE904 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TotalCallTestMac/TotalCallTestMac.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TNLP8V9RKK;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiger2ndapp.TotalCallTestMac;
+				PRODUCT_NAME = TotalCallTestMac;
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		690FFA982E556A7D00BBE904 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TotalCallTestMac/TotalCallTestMac.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TNLP8V9RKK;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiger2ndapp.TotalCallTestMac;
+				PRODUCT_NAME = TotalCallTestMac;
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		690FFA9A2E556A7D00BBE904 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TNLP8V9RKK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tigers2nd.VideoTestApp.TotalCallTestMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TotalCallTestMac.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TotalCallTestMac";
+			};
+			name = Debug;
+		};
+		690FFA9B2E556A7D00BBE904 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TNLP8V9RKK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tigers2nd.VideoTestApp.TotalCallTestMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TotalCallTestMac.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TotalCallTestMac";
+			};
+			name = Release;
+		};
+		690FFA9D2E556A7D00BBE904 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TNLP8V9RKK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tigers2nd.VideoTestApp.TotalCallTestMacUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = TotalCallTestMac;
+			};
+			name = Debug;
+		};
+		690FFA9E2E556A7D00BBE904 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TNLP8V9RKK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tigers2nd.VideoTestApp.TotalCallTestMacUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = TotalCallTestMac;
+			};
+			name = Release;
+		};
 		6926DB112E549E87007C19CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -534,6 +887,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		690FFA962E556A7D00BBE904 /* Build configuration list for PBXNativeTarget "TotalCallTestMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				690FFA972E556A7D00BBE904 /* Debug */,
+				690FFA982E556A7D00BBE904 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		690FFA992E556A7D00BBE904 /* Build configuration list for PBXNativeTarget "TotalCallTestMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				690FFA9A2E556A7D00BBE904 /* Debug */,
+				690FFA9B2E556A7D00BBE904 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		690FFA9C2E556A7D00BBE904 /* Build configuration list for PBXNativeTarget "TotalCallTestMacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				690FFA9D2E556A7D00BBE904 /* Debug */,
+				690FFA9E2E556A7D00BBE904 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6926DAED2E549E85007C19CC /* Build configuration list for PBXProject "TotalCallTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -585,6 +965,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		6926DB1C2E549F00007C19CC /* LiveKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6926DB1D2E549F00007C19CC /* XCRemoteSwiftPackageReference "client-sdk-swift" */;
+			productName = LiveKit;
+		};
+		6977B39C2E558B3E00E76CBF /* LiveKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6926DB1D2E549F00007C19CC /* XCRemoteSwiftPackageReference "client-sdk-swift" */;
 			productName = LiveKit;
